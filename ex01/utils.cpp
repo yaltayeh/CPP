@@ -1,0 +1,26 @@
+#include <string>
+#include <iostream>
+
+std::string get_field(std::string key)
+{
+	std::string	value = "";
+
+	while (value.empty())
+	{
+		std::cout << key << ": " << std::flush;
+		std::cin >> value;
+		if (std::cin.eof())
+			return ("");
+	}
+	return (value);
+}
+
+std::string	truncate(std::string text)
+{
+	if (text.length() > 10)
+	{
+		text = text.substr(0, 10);
+		text[9] = '.';
+	}
+	return (text);
+}

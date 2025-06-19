@@ -4,6 +4,7 @@
 #include <string>
 
 #define BOOK_SIZE 8
+#define STRING_WIDE 10
 
 class contact
 {
@@ -21,6 +22,5 @@ class contact
 
 std::string get_field(std::string key);
 std::string	truncate(std::string text);
-
 
 #endif

@@ -1,11 +1,10 @@
-NAME = phonebook
+NAME = bank
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror
 
-FILES = contact.cpp	\
-		main.cpp	\
-		utils.cpp	\
+FILES = Account.cpp	\
+		tests.cpp	\
 
 OFILES = ${FILES:%.cpp=%.o}
 

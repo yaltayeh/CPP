@@ -1,11 +1,9 @@
-NAME = phonebook
+NAME = megaphone
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror
 
-FILES = contact.cpp	\
-		main.cpp	\
-		utils.cpp	\
+FILES = megaphone.cpp
 
 OFILES = ${FILES:%.cpp=%.o}
 

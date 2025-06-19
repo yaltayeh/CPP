@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 
-
 char	*string_toupper(char *s)
 {
 	char	*_s;

@@ -28,9 +28,9 @@ int	contact::display(int id) {
 	if (contact::first_name == "")
 		return (0);
 	std::cout	<< std::left
-				<< std::setw(10) << id << "|" 
-				<< std::setw(10) << contact::first_name << "|" 
-				<< std::setw(10) << contact::last_name << "|" 
-				<< std::setw(10) << contact::nickname << std::endl;
+				<< std::setw(STRING_WIDE) << id << "|" 
+				<< std::setw(STRING_WIDE) << contact::first_name << "|" 
+				<< std::setw(STRING_WIDE) << contact::last_name << "|" 
+				<< std::setw(STRING_WIDE) << contact::nickname << std::endl;
 	return (1);
 }

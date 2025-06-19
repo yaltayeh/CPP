@@ -1,5 +1,5 @@
-#include <string>
 #include <iostream>
+#include "contact.hpp"
 
 std::string get_field(std::string key)
 {
@@ -17,9 +17,9 @@ std::string get_field(std::string key)
 
 std::string	truncate(std::string text)
 {
-	if (text.length() > 10)
+	if (text.length() > STRING_WIDE)
 	{
-		text = text.substr(0, 10);
+		text = text.substr(0, STRING_WIDE);
 		text[9] = '.';
 	}
 	return (text);

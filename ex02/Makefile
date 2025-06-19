@@ -1,9 +1,10 @@
-NAME = megaphone
+NAME = bank
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror
 
-FILES = megaphone.cpp
+FILES = Account.cpp	\
+		tests.cpp	\
 
 OFILES = ${FILES:%.cpp=%.o}
 

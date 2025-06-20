@@ -3,7 +3,7 @@
 
 std::string get_field(std::string key)
 {
-	std::string	value = "";
+	std::string value = "";
 
 	while (value.empty())
 	{
@@ -15,7 +15,7 @@ std::string get_field(std::string key)
 	return (value);
 }
 
-std::string	truncate(std::string text)
+std::string truncate(std::string text)
 {
 	if (text.length() > STRING_WIDE)
 	{

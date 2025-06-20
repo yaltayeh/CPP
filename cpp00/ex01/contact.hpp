@@ -8,19 +8,19 @@
 
 class contact
 {
-	private:
-		std::string first_name;
-		std::string last_name;
-		std::string nickname;
-		std::string phone_number;
-		std::string darkest_secret;
-	
-	public:
-		int read_data(void);
-		int	display(int id);
+private:
+	std::string first_name;
+	std::string last_name;
+	std::string nickname;
+	std::string phone_number;
+	std::string darkest_secret;
+
+public:
+	int read_data(void);
+	int display(int id);
 };
 
 std::string get_field(std::string key);
-std::string	truncate(std::string text);
+std::string truncate(std::string text);
 
 #endif

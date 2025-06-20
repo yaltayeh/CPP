@@ -2,7 +2,8 @@
 #include <iostream>
 #include <iomanip>
 
-int	contact::read_data(void) {
+int contact::read_data(void)
+{
 	contact::first_name = get_field("first name");
 	if (contact::first_name == "")
 		return (1);
@@ -24,13 +25,14 @@ int	contact::read_data(void) {
 	return (0);
 }
 
-int	contact::display(int id) {
+int contact::display(int id)
+{
 	if (contact::first_name == "")
 		return (0);
-	std::cout	<< std::left
-				<< std::setw(STRING_WIDE) << id << "|" 
-				<< std::setw(STRING_WIDE) << contact::first_name << "|" 
-				<< std::setw(STRING_WIDE) << contact::last_name << "|" 
-				<< std::setw(STRING_WIDE) << contact::nickname << std::endl;
+	std::cout << std::left
+			  << std::setw(STRING_WIDE) << id << "|"
+			  << std::setw(STRING_WIDE) << contact::first_name << "|"
+			  << std::setw(STRING_WIDE) << contact::last_name << "|"
+			  << std::setw(STRING_WIDE) << contact::nickname << std::endl;
 	return (1);
 }

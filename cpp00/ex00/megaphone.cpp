@@ -1,17 +1,17 @@
 #include <iostream>
 #include <string>
 
-char	*string_toupper(char *s)
+std::string string_toupper(std::string s)
 {
-	char	*_s;
+	int	i;
 
-	_s = s;
-	while (*s)
+	i = 0;
+	while (s[i])
 	{
-		*s = std::toupper(*s);
-		s++;
+		s[i] = std::toupper(s[i]);
+		i++;
 	}
-	return (_s);
+	return (s);
 }
 
 int main(int argc, char **argv)
@@ -22,7 +22,10 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	for (int i = 1; i < argc; i++)
-		std::cout << (i > 1 ? " " : "") << string_toupper(argv[i]);
+	{
+		std::string	arg = std::string(argv[i]);
+		std::cout << (i > 1 ? " " : "") << string_toupper(std::string(argv[i]));
+	}
 	std::cout << std::endl;
 	return (0);
 }

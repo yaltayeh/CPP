@@ -8,11 +8,9 @@ std::string get_field(std::string key)
 	while (value.empty())
 	{
 		std::cout << key << ": " << std::flush;
-		std::cin >> value;
+		std::getline(std::cin, value);
 		if (std::cin.eof())
 			return ("");
-		std::cin.clear();
-        std::cin.ignore(10000, '\n');
 	}
 	return (value);
 }

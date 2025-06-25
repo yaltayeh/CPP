@@ -39,7 +39,7 @@ print_target:
 		goto print_target;
 	}
 	std::cin.clear();
-    std::cin.ignore(10000, '\n');
+	std::cin.ignore(10000, '\n');
 	contacts[target].display_full(target);
 	return (0);
 }
@@ -54,11 +54,9 @@ int main()
 	while (1)
 	{
 		std::cout << "> ";
-		std::cin >> prompt;
+		std::getline(std::cin, prompt);
 		if (std::cin.eof())
 			break;
-		std::cin.clear(); // Clear error flag
-        std::cin.ignore(10000, '\n'); // Discard invalid input
 		if (prompt == "ADD")
 		{
 			if (add_handler(contacts, &i))

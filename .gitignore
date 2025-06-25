@@ -1,5 +1,14 @@
 .vscode
 **/*.o
-ex00/megaphone
-ex01/phonebook
-ex02/bank
+cpp00/ex00/megaphone
+cpp00/ex01/phonebook
+cpp00/ex02/bank
+
+cpp01/ex00/zombie
+cpp01/ex01/zombie
+cpp01/ex02/brain
+cpp01/ex03/violence
+cpp01/ex04/best_for_ever
+
+cpp02/ex00/fixed
+cpp02/ex01/fixed

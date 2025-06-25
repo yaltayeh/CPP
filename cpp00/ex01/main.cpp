@@ -1,8 +1,8 @@
 #include <string>
 #include <iostream>
-#include "contact.hpp"
+#include "Contact.hpp"
 
-int add_handler(contact *contacts, int *i)
+int add_handler(Contact *contacts, int *i)
 {
 	if (contacts[*i].read_data())
 		return (1);
@@ -10,30 +10,55 @@ int add_handler(contact *contacts, int *i)
 	return (0);
 }
 
-void search_handler(contact *contacts, int i)
+int search_handler(Contact *contacts, int i)
 {
 	int nb = 0;
 	for (int j = 0; j < BOOK_SIZE; j++)
 	{
-		if (contacts[i].display(nb))
+		if (contacts[i].display_row(nb))
 			nb++;
 		i = (i + 1) % BOOK_SIZE;
 	}
+	if (nb == 0)
+	{
+		std::cout << "Don't have contacts yet" << std::endl;
+		return (0);
+	}
+
+print_target:
+	int target;
+	std::cout << "Enter Contact ID: " << std::flush;
+	std::cin >> target;
+	if (std::cin.eof())
+		return (1);
+	if (!std::cin.good() || target < 0 || target >= nb)
+	{
+		std::cin.clear();
+        std::cin.ignore(10000, '\n');
+		std::cout << target << " out of the range" << std::endl;
+		goto print_target;
+	}
+	std::cin.clear();
+    std::cin.ignore(10000, '\n');
+	contacts[target].display_full(target);
+	return (0);
 }
 
 int main()
 {
 	std::string prompt;
-	contact contacts[BOOK_SIZE];
+	Contact contacts[BOOK_SIZE];
 	int i;
 
 	i = 0;
 	while (1)
 	{
-		std::cout << "> " << std::flush;
+		std::cout << "> ";
 		std::cin >> prompt;
 		if (std::cin.eof())
 			break;
+		std::cin.clear(); // Clear error flag
+        std::cin.ignore(10000, '\n'); // Discard invalid input
 		if (prompt == "ADD")
 		{
 			if (add_handler(contacts, &i))

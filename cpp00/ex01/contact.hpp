@@ -6,7 +6,7 @@
 #define BOOK_SIZE 8
 #define STRING_WIDE 10
 
-class contact
+class Contact
 {
 private:
 	std::string first_name;
@@ -17,7 +17,8 @@ private:
 
 public:
 	int read_data(void);
-	int display(int id);
+	int display_row(int id);
+	int display_full(int id);
 };
 
 std::string get_field(std::string key);

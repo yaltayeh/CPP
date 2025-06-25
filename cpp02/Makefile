@@ -1,11 +1,9 @@
-NAME = phonebook
+NAME = brain
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror
 
-FILES = Contact.cpp	\
-		main.cpp	\
-		utils.cpp	\
+FILES = main.cpp		\
 
 OFILES = ${FILES:%.cpp=%.o}
 

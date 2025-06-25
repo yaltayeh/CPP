@@ -1,5 +1,5 @@
 #include <iostream>
-#include "contact.hpp"
+#include "Contact.hpp"
 
 std::string get_field(std::string key)
 {
@@ -11,16 +11,19 @@ std::string get_field(std::string key)
 		std::cin >> value;
 		if (std::cin.eof())
 			return ("");
+		std::cin.clear();
+        std::cin.ignore(10000, '\n');
 	}
 	return (value);
 }
 
 std::string truncate(std::string text)
 {
-	if (text.length() > STRING_WIDE)
+	std::string copy = std::string(text);
+	if (copy.length() > STRING_WIDE)
 	{
-		text = text.substr(0, STRING_WIDE);
-		text[9] = '.';
+		copy = copy.substr(0, STRING_WIDE);
+		copy[9] = '.';
 	}
-	return (text);
+	return (copy);
 }

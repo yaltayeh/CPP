@@ -1,19 +1,16 @@
 NAME = brain
 
-CC = c++
-CFLAGS = -Wall -Wextra -Werror
-
 FILES = main.cpp		\
+
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OFILES = ${FILES:%.cpp=%.o}
 
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	$(CC) $^ -o $@
-
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $^ -o $@
 
 clean:
 	rm -rf $(OFILES)

@@ -45,12 +45,13 @@ int main(int argc, char **argv)
 			pos = content.find(s1, pos);
 			if (pos == std::string::npos)
 				break;
-			ofile.write(&content[cur], pos - cur);
+			ofile << content.substr(cur, pos - cur);
 			ofile << s2;
 			pos += s1.length();
 		}
 		if (cur < (size_t)size)
 			ofile << &content[cur];
+		ofile.flush();
 		ofile.close();
 	}
 	catch (const std::ios_base::failure &e)

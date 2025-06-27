@@ -1,6 +1,7 @@
-NAME = best_for_ever
+NAME = harlFilter
 
 FILES = main.cpp	\
+		Harl.cpp	\
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

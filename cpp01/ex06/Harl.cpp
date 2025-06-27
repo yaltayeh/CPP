@@ -38,6 +38,14 @@ void Harl::error(void)
                 "\tand now my memory usage looks like a horror movie. I am the leak.\n" << std::endl;
 }
 
+int Harl::get_level_index(std::string level)
+{
+    for (size_t i = 0; i < sizeof(Harl::complains) / sizeof(*Harl::complains); i++)
+        if (Harl::complains[i].level == level)
+            return (int)i;
+    return -1;
+}
+
 void Harl::complain(std::string level)
 {
     for (size_t i = 0; i < sizeof(Harl::complains) / sizeof(*Harl::complains); i++)

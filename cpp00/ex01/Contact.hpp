@@ -1,9 +1,8 @@
-#ifndef __CONTACT_CPP__
-#define __CONTACT_CPP__
+#ifndef __CONTACT_H__
+#define __CONTACT_H__
 
 #include <string>
 
-#define BOOK_SIZE 8
 #define STRING_WIDE 10
 
 class Contact
@@ -16,12 +15,9 @@ private:
 	std::string darkest_secret;
 
 public:
-	int read_data(void);
-	int display_row(int id);
-	int display_full(int id);
+	void	read_data(void);
+	int		displayInRow(int id);
+	int		displayInCard(int id);
 };
-
-std::string get_field(std::string key);
-std::string truncate(std::string text);
 
 #endif

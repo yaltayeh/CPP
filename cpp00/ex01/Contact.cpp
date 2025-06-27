@@ -2,31 +2,27 @@
 #include <iostream>
 #include <iomanip>
 
-int Contact::read_data(void)
+std::string get_field(std::string key, std::string allowed = "");
+std::string truncate(std::string text);
+
+void Contact::read_data(void)
 {
-	first_name = get_field("first name");
-	if (first_name == "")
-		return (1);
-	last_name = get_field("last name");
-	if (last_name == "")
-		return (1);
-	nickname = get_field("nickname");
-	if (nickname == "")
-		return (1);
-	phone_number = get_field("phone number");
-	if (phone_number == "")
-		return (1);
-	darkest_secret = get_field("darkest secret");
-	if (darkest_secret == "")
-		return (1);
-	return (0);
+	try {
+		first_name = get_field("first name");
+		last_name = get_field("last name");
+		nickname = get_field("nickname");
+		phone_number = get_field("phone number", "+0123456789 ");
+		darkest_secret = get_field("darkest secret");
+	} catch (const std::exception& e) {
+		throw e;
+	}
 }
 
-int Contact::display_row(int id)
+int Contact::displayInRow(int id)
 {
 	if (first_name == "")
 		return (0);
-	std::cout << std::left
+	std::cout << std::right
 			  << std::setw(STRING_WIDE) << id << "|"
 			  << std::setw(STRING_WIDE) << truncate(first_name) << "|"
 			  << std::setw(STRING_WIDE) << truncate(last_name) << "|"
@@ -34,7 +30,7 @@ int Contact::display_row(int id)
 	return (1);
 }
 
-int Contact::display_full(int id)
+int Contact::displayInCard(int id)
 {
 	if (first_name == "")
 		return (0);

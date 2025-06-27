@@ -3,8 +3,9 @@ NAME = phonebook
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-FILES = Contact.cpp	\
-		main.cpp	\
+FILES = main.cpp	\
+		Phonebook.cpp	\
+		Contact.cpp	\
 		utils.cpp	\
 
 OFILES = ${FILES:%.cpp=%.o}

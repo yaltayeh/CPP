@@ -1,75 +1,80 @@
 #include <string>
 #include <iostream>
 #include "Contact.hpp"
+#include "Phonebook.hpp"
 
-int add_handler(Contact *contacts, int *i)
+void add_handler(Phonebook *pb)
 {
-	if (contacts[*i].read_data())
-		return (1);
-	*i = (*i + 1) % BOOK_SIZE;
-	return (0);
+	try
+	{
+		Contact c;
+
+		c.read_data();
+		pb->addContact(c);
+	}
+	catch (const std::exception &e)
+	{
+		throw e;
+	}
 }
 
-int search_handler(Contact *contacts, int i)
+void search_handler(Phonebook *pb)
 {
-	int nb = 0;
-	for (int j = 0; j < BOOK_SIZE; j++)
-	{
-		if (contacts[i].display_row(nb))
-			nb++;
-		i = (i + 1) % BOOK_SIZE;
-	}
-	if (nb == 0)
-	{
-		std::cout << "Don't have contacts yet" << std::endl;
-		return (0);
-	}
+	size_t nb = pb->getContactsCount();
+	pb->displayContacts();
 
+	if (nb == 0)
+		return ;
 print_target:
-	int target;
-	std::cout << "Enter Contact ID: " << std::flush;
-	std::cin >> target;
-	if (std::cin.eof())
-		return (1);
-	if (!std::cin.good() || target < 0 || target >= nb)
+	try
 	{
+		int target;
+		std::cout << "Enter Contact ID: " << std::flush;
+		std::cin >> target;
+		if (!std::cin.good() || target < 0 || target >= (int)nb)
+		{
+			std::cin.clear();
+			std::cin.ignore(10000, '\n');
+			std::cout << target << " out of the range" << std::endl;
+			goto print_target;
+		}
 		std::cin.clear();
-        std::cin.ignore(10000, '\n');
-		std::cout << target << " out of the range" << std::endl;
-		goto print_target;
+		std::cin.ignore(10000, '\n');
+		pb->displayContactCard(target);
 	}
-	std::cin.clear();
-	std::cin.ignore(10000, '\n');
-	contacts[target].display_full(target);
-	return (0);
+	catch (const std::exception &e)
+	{
+		throw e;
+	}
 }
 
 int main()
 {
 	std::string prompt;
-	Contact contacts[BOOK_SIZE];
-	int i;
+	Phonebook pb;
 
-	i = 0;
+	std::cin.exceptions(std::ios_base::eofbit);
 	while (1)
 	{
-		std::cout << "> ";
-		std::getline(std::cin, prompt);
-		if (std::cin.eof())
-			break;
-		if (prompt == "ADD")
+		try
 		{
-			if (add_handler(contacts, &i))
+			std::cout << "> ";
+			std::getline(std::cin, prompt);
+			if (prompt == "ADD")
+				add_handler(&pb);
+			else if (prompt == "SEARCH")
+				search_handler(&pb);
+			else if (prompt == "EXIT")
 				break;
+			else
+				std::cout << "allowed commands: ADD, SEARCH, EXIT" << std::endl;
 		}
-		else if (prompt == "SEARCH")
+		catch (const std::exception &e)
 		{
-			search_handler(contacts, i);
-		}
-		else if (prompt == "EXIT")
-		{
-			std::cout << "this is EXIT" << std::endl;
-			break;
+			std::cout << "\nEOF" << std::endl;
+			return (0);
 		}
 	}
+	std::cout << "Bye :)" << std::endl;
+	return (0);
 }

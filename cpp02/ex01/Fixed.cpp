@@ -2,7 +2,7 @@
 #include <ostream>
 #include <iostream>
 
-int const Fixed::_fractionalBits = 8;
+const int Fixed::_fractionalBits = 8;
 
 Fixed::Fixed()
 {
@@ -24,7 +24,7 @@ Fixed::Fixed(int value)
 
 Fixed::Fixed(float value)
 {
-	(void)value;
+	(void)value; // TODO:
 }
 
 Fixed::~Fixed()
@@ -54,11 +54,13 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
+	// TODO:
 	return (value);
 }
 
 int Fixed::toInt(void) const
 {
+	// TODO:
 	return (value);
 }
 

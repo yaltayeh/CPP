@@ -12,7 +12,7 @@ void Harl::debug(void)
 {
     std::cout << "[ DEBUG ]" << std::endl;
     std::cout << "\tI allocated a whole zombie horde on the heap just to see if I could.\n"
-                "\tNow I’ve got 42 of them announcing themselves in a loop.\n"
+                "\tNow I've got 42 of them announcing themselves in a loop.\n"
                 "\tMy console is a graveyard.\n" << std::endl;
 }
 
@@ -20,21 +20,21 @@ void Harl::info(void)
 {
     std::cout << "[ INFO ]" << std::endl;
     std::cout << "\tLook, I passed by reference, dereferenced the pointer, and the value still changed.\n"
-                "\tI don’t know how it works, but I’m taking the win and moving on.\n" << std::endl;
+                "\tI don't know how it works, but I'm taking the win and moving on.\n" << std::endl;
 }
 
 void Harl::warning(void)
 {
     std::cout << "[ WARNING ]" << std::endl;
     std::cout << "\tI edited the weapon after giving it to HumanA. \n"
-                "\tNow everyone’s attacking with a spoon instead of a club.\n"
+                "\tNow everyone's attacking with a spoon instead of a club.\n"
                 "\tI guess shared references cut both ways.\n" << std::endl;
 }
 
 void Harl::error(void)
 {
     std::cout << "[ ERROR ]" << std::endl;
-    std::cout << "\tI used new but forgot delete. Again. Valgrind’s screaming,\n"
+    std::cout << "\tI used new but forgot delete. Again. Valgrind's screaming,\n"
                 "\tand now my memory usage looks like a horror movie. I am the leak.\n" << std::endl;
 }
 

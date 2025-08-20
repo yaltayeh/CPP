@@ -1,9 +1,8 @@
 #include <string>
 #include <iostream>
-#include "Contact.hpp"
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 
-void add_handler(Phonebook *pb)
+void add_handler(PhoneBook *pb)
 {
 	try
 	{
@@ -18,7 +17,7 @@ void add_handler(Phonebook *pb)
 	}
 }
 
-void search_handler(Phonebook *pb)
+void search_handler(PhoneBook *pb)
 {
 	size_t nb = pb->getContactsCount();
 	pb->displayContacts();
@@ -51,7 +50,7 @@ print_target:
 int main()
 {
 	std::string prompt;
-	Phonebook pb;
+	PhoneBook pb;
 
 	std::cin.exceptions(std::ios_base::eofbit);
 	while (1)

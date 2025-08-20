@@ -7,13 +7,13 @@
 
 #define CONTACTS_COUNT 8
 
-class Phonebook {
+class PhoneBook {
     private:
     Contact contacts[CONTACTS_COUNT];
     size_t  next_index;
     size_t  contacts_count;
 public:
-    Phonebook();
+    PhoneBook();
     void    addContact(Contact c);
     void    displayContacts();
     void    displayContactCard(size_t i);

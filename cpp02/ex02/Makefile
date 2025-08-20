@@ -1,9 +1,10 @@
-NAME = brain
+NAME = fixed
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-FILES = main.cpp		\
+FILES = main.cpp	\
+		Fixed.cpp	\
 
 OFILES = ${FILES:%.cpp=%.o}
 

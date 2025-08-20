@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/19 15:48:31 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/08/19 15:49:41 by yaltayeh         ###   ########.fr       */
+/*   Created: 2025/08/19 15:48:49 by yaltayeh          #+#    #+#             */
+/*   Updated: 2025/08/20 14:00:53 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FIXED_HPP__
-#define __FIXED_HPP__
+#include <iostream>
+#include "Fixed.hpp"
 
-class Fixed
+int main(void)
 {
-private:
-	static int const _fractionalBits;
-	int value;
-
-public:
-	Fixed();
-	Fixed(Fixed &f);
-	~Fixed();
-	Fixed &operator=(const Fixed &f);
-	int getRawBits(void) const;
-	void setRawBits(int const raw);
-};
-
-#endif
+	Fixed a(1.15f);
+	Fixed b(0.5f);
+	std::cout << a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << "a / b: " << a / b << std::endl;
+	return 0;
+}

@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/19 15:48:24 by yaltayeh          #+#    #+#             */
+/*   Updated: 2025/08/20 14:48:27 by yaltayeh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 #include <ostream>
 #include <iostream>
+#include <cmath>
 
 const int Fixed::_fractionalBits = 8;
 
@@ -13,18 +26,18 @@ Fixed::Fixed()
 Fixed::Fixed(const Fixed &f)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = f;
+	this->value = f.value;
 }
 
 Fixed::Fixed(int value)
 {
 	std::cout << "Float constructor called" << std::endl;
-	Fixed::value = value;
+	this->value = value << _fractionalBits;
 }
 
 Fixed::Fixed(float value)
 {
-	(void)value; // TODO:
+	this->value = roundf(value * (1 << _fractionalBits));
 }
 
 Fixed::~Fixed()
@@ -54,14 +67,12 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-	// TODO:
-	return (value);
+	return ((value * 1.f)/ (1 << _fractionalBits));
 }
 
 int Fixed::toInt(void) const
 {
-	// TODO:
-	return (value);
+	return (value >> _fractionalBits);
 }
 
 std::basic_ostream<char>& operator<<(std::basic_ostream<char>& os, const Fixed &f)

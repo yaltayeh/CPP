@@ -1,22 +1,23 @@
-NAME = phonebook
+NAME = bsp
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -g
+CPPFLAGS = -IMLX42/include 
 
 FILES = main.cpp	\
-		PhoneBook.cpp	\
-		Contact.cpp	\
-		utils.cpp	\
+		Fixed.cpp	\
+		Point.cpp	\
+		bsp.cpp		\
 
 OFILES = ${FILES:%.cpp=%.o}
 
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	$(CC) $^ -o $@
+	$(CC)  $^ -o $@ $(LDFLAGS)
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OFILES)

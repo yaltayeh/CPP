@@ -4,7 +4,7 @@
 #include <string>
 
 #define USE_ENERGY_POINTS(action_name, action)	\
-	if (hasEnergy()) {							\
+	if (ClapTrap::energyPoints > 0) {							\
 		action;									\
 		useOneEnergy();							\
 	} else {									\
@@ -26,7 +26,6 @@ protected:
 	ClapTrap(std::string name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage);
 	std::string getNmae() const;
 	void useOneEnergy();
-	bool hasEnergy() const;
 
 public:
 	ClapTrap(std::string name);

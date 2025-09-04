@@ -3,6 +3,17 @@
 
 #include <string>
 
+#define USE_ENERGY_POINTS(action_name, action)	\
+	if (ClapTrap::energyPoints > 0) {							\
+		action;									\
+		useOneEnergy();							\
+	} else {									\
+		std::cout << "ClapTrap " << name 		\
+				<< " has no energy left to "	\
+				<< action_name << "!" 			\
+				<< std::endl;					\
+	}											\
+
 class ClapTrap
 {
 private:

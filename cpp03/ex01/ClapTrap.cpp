@@ -16,15 +16,10 @@ std::string ClapTrap::getNmae() const
 
 void ClapTrap::useOneEnergy()
 {
-	if (hasEnergy())
+	if (ClapTrap::energyPoints > 0)
 		energyPoints--;
 	else
 		std::cout << "ClapTrap " << name << " has no energy left!" << std::endl;
-}
-
-bool ClapTrap::hasEnergy() const
-{
-	return energyPoints > 0;
 }
 
 ClapTrap::ClapTrap(std::string name) : 

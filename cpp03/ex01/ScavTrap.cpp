@@ -10,9 +10,10 @@ ScavTrap::ScavTrap(std::string name) :
 
 void ScavTrap::guardGate()
 {
-	
-	gateKeeperMode = true;
-	std::cout << "ScavTrap " << getNmae() << " is now in Gate Keeper mode!" << std::endl;
+	gateKeeperMode = !gateKeeperMode;
+	std::cout << "ScavTrap " 
+		<< getNmae() << " Gate Keeper mode: " 
+		<< (gateKeeperMode ? "enable" : "disable") << std::endl;
 }
 
 ScavTrap::~ScavTrap()

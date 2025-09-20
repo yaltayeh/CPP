@@ -1,5 +1,7 @@
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 #include "ClapTrap.hpp"
+#include "DiamondTrap.hpp"
 #include <iostream>
 #include <stdexcept>
 #include <limits>
@@ -50,14 +52,23 @@ void printStatus()
 			if (robots[i] != NULL)
 			{
 				std::cout << "\nRobot " << (i + 1) << ": " << robots[i]->getName() << std::endl;
-				std::cout << "Type: " << (typeid(*robots[i]) == typeid(ScavTrap) ? "ScavTrap" : "ClapTrap") << std::endl;
+				
+				std::string type = "ClapTrap";
+				if (typeid(*robots[i]) == typeid(ScavTrap))
+					type = "ScavTrap";
+				else if (typeid(*robots[i]) == typeid(FragTrap))
+					type = "FragTrap";
+				else if (typeid(*robots[i]) == typeid(DiamondTrap))
+					type = "DiamondTrap";
+
+				std::cout << "Type: " << type << std::endl;
 				std::cout << "Hit Points: " << robots[i]->getHitPoints() << std::endl;
 				std::cout << "Energy Points: " << robots[i]->getEnergyPoints() << std::endl;
 				std::cout << "Attack Damage: " << robots[i]->getAttackDamage() << std::endl;
 
-				if (typeid(*robots[i]) == typeid(ScavTrap))
+				if (typeid(*robots[i]) == typeid(ScavTrap) || typeid(*robots[i]) == typeid(DiamondTrap))
 				{
-					std::cout << "Gate Keeper Mode: " << (static_cast<ScavTrap*>(robots[i])->isGateKeeperMode() ? "ON" : "OFF") << std::endl;
+					std::cout << "Gate Keeper Mode: " << (dynamic_cast<ScavTrap*>(robots[i])->isGateKeeperMode() ? "ON" : "OFF") << std::endl;
 				}
 				std::cout << "------------------------" << std::endl;
 			}
@@ -99,7 +110,8 @@ void attack()
 			std::cout << victim.getName() << " is dead !!." << std::endl;
 			return;
 		}
-		if (typeid(victim) == typeid(ScavTrap) && static_cast<ScavTrap&>(victim).isGateKeeperMode())
+		if ((typeid(victim) == typeid(ScavTrap) || typeid(victim) == typeid(DiamondTrap)) 
+			&& dynamic_cast<ScavTrap&>(victim).isGateKeeperMode())
 		{
 			std::cout << victim.getName() << " is in Gate Keeper mode and cannot be attacked!" << std::endl;
 			return;
@@ -148,12 +160,12 @@ void gate()
 	try
 	{
 		ClapTrap &gate_keeper = getRobot("Enter the name of the ScavTrap to toggle Gate Keeper mode: ");
-		if (typeid(gate_keeper) != typeid(ScavTrap))
+		if (typeid(gate_keeper) != typeid(ScavTrap) && typeid(gate_keeper) != typeid(DiamondTrap))
 		{
 			std::cout << gate_keeper.getName() << " is not a ScavTrap and cannot toggle Gate Keeper mode!" << std::endl;
 			return;
 		}
-		static_cast<ScavTrap&>(gate_keeper).guardGate();
+		dynamic_cast<ScavTrap&>(gate_keeper).guardGate();
 	}
 	catch (const std::ios_base::failure &e)
 	{
@@ -167,20 +179,66 @@ void gate()
 	}
 }
 
+void highFives()
+{
+	try
+	{
+		ClapTrap &fragtrap = getRobot("Enter the name of the FragTrap for high fives: ");
+		if (typeid(fragtrap) != typeid(FragTrap))
+		{
+			std::cout << fragtrap.getName() << " is not a FragTrap and cannot give high fives!" << std::endl;
+			return;
+		}
+		dynamic_cast<FragTrap&>(fragtrap).highFivesGuys();
+	}
+	catch (const std::ios_base::failure &e)
+	{
+		throw std::runtime_error("Ctrl+D detected");
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << "Error in highFives: " << e.what() << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+}
+
+void whoAmI()
+{
+	try
+	{
+		ClapTrap &diamond = getRobot("Enter the name of the DiamondTrap to call whoAmI: ");
+		if (typeid(diamond) != typeid(DiamondTrap))
+		{
+			std::cout << diamond.getName() << " is not a DiamondTrap and cannot call whoAmI!" << std::endl;
+			return;
+		}
+		dynamic_cast<DiamondTrap&>(diamond).whoAmI();
+	}
+	catch (const std::ios_base::failure &e)
+	{
+		throw std::runtime_error("Ctrl+D detected");
+	}
+	catch (const std::exception &e)
+	{
+		std::cout << "Error in whoAmI: " << e.what() << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	}
+}
+
 void newRobot(const std::string &type, const std::string &name)
 {
 	if (type == "ClapTrap")
-	{
 		robots[robotCount] = new ClapTrap(name);
-	}
 	else if (type == "ScavTrap")
-	{
 		robots[robotCount] = new ScavTrap(name);
-	}
+	else if (type == "FragTrap")
+		robots[robotCount] = new FragTrap(name);
+	else if (type == "DiamondTrap")
+		robots[robotCount] = new DiamondTrap(name);
 	else
-	{
 		throw std::invalid_argument("Invalid robot type!");
-	}
 	robotCount++;
 }
 
@@ -194,7 +252,7 @@ void addRobot()
 		std::cout << "Enter robot name: ";
 		std::cin >> name;
 
-		std::cout << "Enter robot type (ClapTrap or ScavTrap): ";
+		std::cout << "Enter robot type (ClapTrap, ScavTrap, FragTrap, or DiamondTrap): ";
 		std::cin >> type;
 
 		newRobot(type, name);
@@ -215,12 +273,15 @@ void addRobot()
 void help()
 {
 	std::cout << "\nCommands:\n"
-			  << "attack : Make one robot attack another.\n"
-			  << "repair : Repair a robot by a specified amount.\n"
-			  << "gate   : Toggle the Gate Keeper mode of a ScavTrap.\n"
-			  << "status : Display the status of all robots.\n"
-			  << "help   : Show this help message.\n"
-			  << "exit   : Exit the program." << std::endl;
+			  << "attack    : Make one robot attack another.\n"
+			  << "repair    : Repair a robot by a specified amount.\n"
+			  << "gate      : Toggle the Gate Keeper mode of a ScavTrap.\n"
+			  << "highfives : Make a FragTrap give high fives.\n"
+			  << "whoami    : Make a DiamondTrap call whoAmI.\n"
+			  << "status    : Display the status of all robots.\n"
+			  << "add       : Add a new robot.\n"
+			  << "help      : Show this help message.\n"
+			  << "exit      : Exit the program." << std::endl;
 }
 
 int main()
@@ -236,6 +297,10 @@ int main()
 	newRobot("ClapTrap", "CT-02");
 	newRobot("ScavTrap", "ST-01");
 	newRobot("ScavTrap", "ST-02");
+	newRobot("FragTrap", "FT-01");
+	newRobot("FragTrap", "FT-02");
+	newRobot("DiamondTrap", "DT-01");
+	newRobot("DiamondTrap", "DT-02");
 
 	// Enable exceptions for cin on EOF
 	std::cin.exceptions(std::ios_base::eofbit);
@@ -265,6 +330,10 @@ int main()
 				printStatus();
 			else if (input == "gate")
 				gate();
+			else if (input == "highfives")
+				highFives();
+			else if (input == "whoami")
+				whoAmI();
 			else if (input == "add")
 				addRobot();
 			else
@@ -272,7 +341,6 @@ int main()
 				std::cout << "Unknown command. Type 'help' for a list of commands." << std::endl;
 				std::cin.clear();
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				continue;
 			}
 		}
 		catch (const std::ios_base::failure &e)

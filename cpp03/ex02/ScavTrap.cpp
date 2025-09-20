@@ -1,6 +1,7 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
+
 ScavTrap::ScavTrap() : ClapTrap("Default_ScavTrap", 100, 50, 20)
 {
 	gateKeeperMode = false;

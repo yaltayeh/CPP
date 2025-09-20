@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 09:21:25 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/20 14:20:46 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/20 14:47:35 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ private:
 	unsigned int attackDamage;
 
 protected:
-	void setName(const std::string &name);
+	virtual void setName(const std::string &name);
 	void setHitPoints(unsigned int hitPoints);
 	void setEnergyPoints(unsigned int energyPoints);
 	void setAttackDamage(unsigned int attackDamage);
 
 public:
+	ClapTrap();
 	ClapTrap(std::string name);
 	ClapTrap(std::string name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage);
 	ClapTrap(const ClapTrap &other);
@@ -66,7 +67,7 @@ public:
 
 	void useOneEnergy();
 
-	const std::string &getName() const;
+	virtual const std::string &getName() const;
 	unsigned int getHitPoints() const;
 	unsigned int getEnergyPoints() const;
 	unsigned int getAttackDamage() const;

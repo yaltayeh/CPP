@@ -1,4 +1,4 @@
-NAME = clap_trap
+NAME = wall_e
 
 
 FILES = main.cpp	\

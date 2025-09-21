@@ -6,8 +6,10 @@
 
 class DiamondTrap : public FragTrap, public ScavTrap
 {
-protected:
+private:
 	std::string name;
+
+protected:
 	void setName(const std::string &name);
 
 public:

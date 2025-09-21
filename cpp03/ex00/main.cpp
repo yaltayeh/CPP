@@ -49,7 +49,6 @@ void printStatus()
 			if (robots[i] != NULL)
 			{
 				std::cout << "\nRobot " << (i + 1) << ": " << robots[i]->getName() << std::endl;
-				std::cout << "Type: " << (typeid(*robots[i]) == typeid(ScavTrap) ? "ScavTrap" : "ClapTrap") << std::endl;
 				std::cout << "Hit Points: " << robots[i]->getHitPoints() << std::endl;
 				std::cout << "Energy Points: " << robots[i]->getEnergyPoints() << std::endl;
 				std::cout << "Attack Damage: " << robots[i]->getAttackDamage() << std::endl;
@@ -132,24 +131,6 @@ void repair()
 	}
 }
 
-void gate()
-{
-	try
-	{
-		ClapTrap &gate_keeper = getRobot("Enter the name of the ScavTrap to toggle Gate Keeper mode: ");
-	}
-	catch (const std::ios_base::failure &e)
-	{
-		throw std::runtime_error("Ctrl+D detected");
-	}
-	catch (const std::exception &e)
-	{
-		std::cout << "Error in gate: " << e.what() << std::endl;
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	}
-}
-
 void newRobot(const std::string &name)
 {
 	robots[robotCount] = new ClapTrap(name);
@@ -179,6 +160,7 @@ ClapTrap *addRobot()
 		std::cout << "Error in addRobot: " << e.what() << std::endl;
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return (NULL);
 	}
 }
 
@@ -187,7 +169,6 @@ void help()
 	std::cout << "\nCommands:\n"
 			  << "attack : Make one robot attack another.\n"
 			  << "repair : Repair a robot by a specified amount.\n"
-			  << "gate   : Toggle the Gate Keeper mode of a ScavTrap.\n"
 			  << "status : Display the status of all robots.\n"
 			  << "help   : Show this help message.\n"
 			  << "exit   : Exit the program." << std::endl;
@@ -231,8 +212,6 @@ int main()
 				repair();
 			else if (input == "status")
 				printStatus();
-			else if (input == "gate")
-				gate();
 			else if (input == "add")
 			{
 				if (addRobot())
@@ -259,16 +238,16 @@ int main()
 					  << e.what() << ". Exiting..." << std::endl;
 			break;
 		}
+		catch (const std::bad_alloc& e)
+		{
+        	std::cerr << "Memory allocation failed: " << e.what() << std::endl;
+			break;
+		}
 		catch (const std::exception &e)
 		{
 			std::cout << "Error: " << e.what() << std::endl;
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		}
-		catch (const std::bad_alloc& e)
-		{
-        	std::cerr << "Memory allocation failed: " << e.what() << std::endl;
-			break;
 		}
 	}
 	delete[] robots;

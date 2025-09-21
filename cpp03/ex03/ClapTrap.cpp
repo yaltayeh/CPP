@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 09:21:28 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/20 14:47:27 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/21 14:37:57 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include <iostream>
 
 ClapTrap::ClapTrap() : name("Default_ClapTrap"),
-									   hitPoints(10),
-									   energyPoints(10),
-									   attackDamage(0)
+					   hitPoints(10),
+					   energyPoints(10),
+					   attackDamage(0)
 {
 	std::cout << "ClapTrap {Default_ClapTrap}: Default constructor called!" << std::endl;
 }
@@ -113,9 +113,8 @@ void ClapTrap::useOneEnergy()
 void ClapTrap::attack(const std::string &target)
 {
 	EXECUTE_ACTION("Attack",
-		std::cout << "ClapTrap {" << getName() << "} attacks {" << target << "}, causing "
-				  << getAttackDamage() << " points of damage!" << std::endl;
-	);
+				   std::cout << "ClapTrap {" << getName() << "} attacks {" << target << "}, causing "
+							 << getAttackDamage() << " points of damage!" << std::endl;);
 }
 
 void ClapTrap::takeDamage(unsigned int amount)

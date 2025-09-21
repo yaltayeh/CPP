@@ -6,10 +6,8 @@
 
 class DiamondTrap : public FragTrap, public ScavTrap
 {
-private:
-	std::string name;
-
 protected:
+	std::string name;
 	void setName(const std::string &name);
 
 public:
@@ -22,4 +20,4 @@ public:
 	const std::string &getName() const;
 };
 
-#endif	// __DIAMONDTRAP_HPP__
+#endif // __DIAMONDTRAP_HPP__

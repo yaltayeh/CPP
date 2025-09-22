@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 18:43:42 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/22 16:01:52 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ class WrongAnimal
 protected:
 	std::string type;
 	WrongAnimal(const std::string &type);
+
+public:
 	WrongAnimal();
 	WrongAnimal(const WrongAnimal &other);
 	WrongAnimal &operator=(const WrongAnimal &other);
-
-public:
 	~WrongAnimal();
 	void makeSound() const;
 	const std::string &getType() const;

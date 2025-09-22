@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 18:43:50 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/22 20:58:13 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ class Animal
 {
 protected:
 	std::string type;
-	Animal();
 	Animal(const std::string &type);
-	Animal(const Animal &other);
 
 public:
+	Animal();
+	Animal(const Animal &other);
 	Animal &operator=(const Animal &other);
-	virtual ~Animal();
-	virtual void makeSound() const;
+	virtual ~Animal() = 0;
+	virtual void makeSound() const = 0;
 	const std::string &getType() const;
 };
 

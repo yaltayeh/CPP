@@ -1,49 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 09:43:25 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/22 09:31:19 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "Animal.hpp"
 #include <iostream>
 
-Dog::Dog() : Animal("Dog")
+Animal::Animal() : type("")
 {
-	std::cout << " Dog wakeup." << std::endl;	
-	brain = new Brain();
+	std::cout << "Animal constructor." << std::endl;
 }
 
-Dog::Dog(const Dog &other)
+Animal::Animal(const std::string &type) : type(type)
 {
-	std::cout << "Dog wakeup(copy)." << std::endl;
+	std::cout << "Animal constructor." << std::endl;
+}
+
+Animal::Animal(const Animal &other)
+{
+	std::cout << "Animal copy constructor." << std::endl;
 	*this = other;
-	brain = new Brain(*other.brain);
 }
 
-Dog &Dog::operator=(const Dog &other)
+Animal &Animal::operator=(const Animal &other)
 {
-	std::cout << "Dog wakeup(copy assignment)." << std::endl;
+	std::cout << "Animal copy assignment operator." << std::endl;
 	if (this != &other)
 	{
 		type = other.type;
-		*brain = *other.brain;
 	}
 	return (*this);
 }
 
-Dog::~Dog()
+Animal::~Animal()
 {
-	std::cout << " Dog sleep." << std::endl;
-	delete brain;
+	std::cout << "Animal destructor." << std::endl;	
 }
 
-void Dog::makeSound() const
+void Animal::makeSound() const
 {
-	std::cout << "Dog say: Aw Aw." << std::endl;
+}
+
+const std::string &Animal::getType() const
+{
+	return (type);
 }

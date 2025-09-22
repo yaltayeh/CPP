@@ -1,11 +1,13 @@
 NAME = zoooo
 
 
-FILES = main.cpp	\
-		Animal.cpp	\
-		Cat.cpp		\
-		Dog.cpp		\
-		Brain.cpp	\
+FILES = main.cpp		\
+		Animal.cpp		\
+		Cat.cpp			\
+		Dog.cpp			\
+		Brain.cpp		\
+		WrongAnimal.cpp	\
+		WrongCat.cpp	\
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98

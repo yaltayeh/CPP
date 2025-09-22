@@ -1,55 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AAAnimal.cpp                                        :+:      :+:    :+:   */
+/*   WrongCat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 09:59:18 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/22 09:32:35 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AAnimal.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
-AAnimal::AAnimal()
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
-	std::cout << "AAnimal constructor." << std::endl;
+	std::cout << " WrongCat wakeup." << std::endl;
+	brain = new Brain();
 }
 
-AAnimal::AAnimal(const std::string &type) : type(type)
+WrongCat::WrongCat(const WrongCat &other)
 {
-	std::cout << "AAnimal constructor." << std::endl;
-}
-
-AAnimal::AAnimal(const AAnimal &other)
-{
-	std::cout << "AAnimal copy constructor." << std::endl;
+	std::cout << "WrongCat wakeup(copy)." << std::endl;
+	brain = new Brain(*other.brain);
 	*this = other;
 }
 
-AAnimal &AAnimal::operator=(const AAnimal &other)
+WrongCat &WrongCat::operator=(const WrongCat &other)
 {
-	std::cout << "AAnimal copy assignment operator." << std::endl;
+	std::cout << "WrongCat wakeup(copy assignment)." << std::endl;
 	if (this != &other)
 	{
 		type = other.type;
+		*brain = *other.brain;
 	}
 	return (*this);
 }
 
-AAnimal::~AAnimal()
+WrongCat::~WrongCat()
 {
-	std::cout << "AAnimal destructor." << std::endl;	
+	std::cout << " WrongCat sleep." << std::endl;
+	delete brain;
 }
 
-void AAnimal::makeSound() const
+void WrongCat::makeSound() const
 {
-	std::cout << "AAnimal sound." << std::endl;
-}
-
-const std::string &AAnimal::getType() const
-{
-	return (type);
+	std::cout << "WrongCat say: Meow." << std::endl;
 }

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 09:43:25 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/22 09:32:35 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
-Dog::Dog() : Animal("Dog")
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
-	std::cout << " Dog wakeup." << std::endl;	
+	std::cout << " WrongCat wakeup." << std::endl;
 	brain = new Brain();
 }
 
-Dog::Dog(const Dog &other)
+WrongCat::WrongCat(const WrongCat &other)
 {
-	std::cout << "Dog wakeup(copy)." << std::endl;
-	*this = other;
+	std::cout << "WrongCat wakeup(copy)." << std::endl;
 	brain = new Brain(*other.brain);
+	*this = other;
 }
 
-Dog &Dog::operator=(const Dog &other)
+WrongCat &WrongCat::operator=(const WrongCat &other)
 {
-	std::cout << "Dog wakeup(copy assignment)." << std::endl;
+	std::cout << "WrongCat wakeup(copy assignment)." << std::endl;
 	if (this != &other)
 	{
 		type = other.type;
@@ -37,13 +37,13 @@ Dog &Dog::operator=(const Dog &other)
 	return (*this);
 }
 
-Dog::~Dog()
+WrongCat::~WrongCat()
 {
-	std::cout << " Dog sleep." << std::endl;
+	std::cout << " WrongCat sleep." << std::endl;
 	delete brain;
 }
 
-void Dog::makeSound() const
+void WrongCat::makeSound() const
 {
-	std::cout << "Dog say: Aw Aw." << std::endl;
+	std::cout << "WrongCat say: Meow." << std::endl;
 }

@@ -6,17 +6,16 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/21 18:13:01 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/22 09:32:35 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include <iostream>
 
-Cat::Cat()
+Cat::Cat() : Animal("Cat")
 {
 	std::cout << " Cat wakeup." << std::endl;	
-	type = "Cat";
 }
 
 Cat::Cat(const Cat &other)
@@ -42,5 +41,5 @@ Cat::~Cat()
 
 void Cat::makeSound() const
 {
-	std::cout << " Meow." << std::endl;
+	std::cout << "Cat say: Meow." << std::endl;
 }

@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   AAAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 09:34:07 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/22 09:59:18 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "AAnimal.hpp"
 #include <iostream>
 
-Dog::Dog() : Animal("Dog")
+AAnimal::AAnimal()
 {
-	std::cout << " Dog wakeup." << std::endl;	
+	std::cout << "AAnimal constructor." << std::endl;
 }
 
-Dog::Dog(const Dog &other)
+AAnimal::AAnimal(const std::string &type) : type(type)
 {
-	std::cout << "Dog wakeup(copy)." << std::endl;
+	std::cout << "AAnimal constructor." << std::endl;
+}
+
+AAnimal::AAnimal(const AAnimal &other)
+{
+	std::cout << "AAnimal copy constructor." << std::endl;
 	*this = other;
 }
 
-Dog &Dog::operator=(const Dog &other)
+AAnimal &AAnimal::operator=(const AAnimal &other)
 {
-	std::cout << "Dog wakeup(copy assignment)." << std::endl;
+	std::cout << "AAnimal copy assignment operator." << std::endl;
 	if (this != &other)
 	{
 		type = other.type;
@@ -34,12 +39,17 @@ Dog &Dog::operator=(const Dog &other)
 	return (*this);
 }
 
-Dog::~Dog()
+AAnimal::~AAnimal()
 {
-	std::cout << " Dog sleep." << std::endl;	
+	std::cout << "AAnimal destructor." << std::endl;	
 }
 
-void Dog::makeSound() const
+void AAnimal::makeSound() const
 {
-	std::cout << "Dog say: Aw Aw." << std::endl;
+	std::cout << "AAnimal sound." << std::endl;
+}
+
+const std::string &AAnimal::getType() const
+{
+	return (type);
 }

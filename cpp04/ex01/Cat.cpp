@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 09:35:38 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:57:44 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ Cat::~Cat()
 void Cat::makeSound() const
 {
 	std::cout << "Cat say: Meow." << std::endl;
+}
+
+void Cat::addIdea(const std::string &idea)
+{
+	brain->addIdea(idea);
+}
+
+std::string Cat::getIdea(int index) const
+{
+	return brain->getIdea(index);
 }

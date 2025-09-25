@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 16:14:00 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:01:54 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ public:
 	WrongCat &operator=(const WrongCat &other);
 	~WrongCat();
 	void makeSound() const;
+	void addIdea(const std::string &idea);
+	std::string getIdea(int index) const;
 };
 
 #endif /* __WRONGCAT_HPP__ */

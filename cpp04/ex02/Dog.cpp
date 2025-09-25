@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 09:43:25 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:05:25 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ Dog::~Dog()
 void Dog::makeSound() const
 {
 	std::cout << "Dog say: Aw Aw." << std::endl;
+}
+
+void Dog::addIdea(const std::string &idea)
+{
+	brain->addIdea(idea);
+}
+
+std::string Dog::getIdea(int index) const
+{
+	return brain->getIdea(index);
 }

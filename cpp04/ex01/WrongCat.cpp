@@ -47,3 +47,13 @@ void WrongCat::makeSound() const
 {
 	std::cout << "WrongCat say: Meow." << std::endl;
 }
+
+void WrongCat::addIdea(const std::string &idea)
+{
+	brain->addIdea(idea);
+}
+
+std::string WrongCat::getIdea(int index) const
+{
+	return (brain->getIdea(index));
+}

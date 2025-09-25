@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 09:31:19 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:09:16 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ Animal::~Animal()
 
 void Animal::makeSound() const
 {
+	std::cout << "Animal sound." << std::endl;
 }
 
 const std::string &Animal::getType() const

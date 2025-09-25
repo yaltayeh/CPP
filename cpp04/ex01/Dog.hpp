@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 09:10:20 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:05:27 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ public:
     Dog &operator=(const Dog &other);
 	~Dog();
 	void makeSound() const;
+	void addIdea(const std::string &idea);
+	std::string getIdea(int index) const;
 };
 
 #endif /* __DOG_HPP__ */

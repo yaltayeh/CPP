@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 20:58:13 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:59:11 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ public:
 	Animal();
 	Animal(const Animal &other);
 	Animal &operator=(const Animal &other);
-	virtual ~Animal() = 0;
-	virtual void makeSound() const = 0;
+	virtual ~Animal();
+	virtual void makeSound() const;
 	const std::string &getType() const;
 };
 

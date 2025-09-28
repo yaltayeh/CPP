@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/21 18:13:16 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/28 11:31:57 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 class Dog : public Animal
 {
-private:
-	std::string type;
-
 public:
 	Dog();
 	Dog(const Dog &other);

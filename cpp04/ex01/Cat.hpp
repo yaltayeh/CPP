@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/25 14:59:13 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/28 11:33:18 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 class Cat : public Animal
 {
 private:
-	std::string	type;
 	Brain		*brain;
 
 public:

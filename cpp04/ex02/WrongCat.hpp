@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/25 15:01:54 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/28 11:33:50 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 class WrongCat : public WrongAnimal
 {
 private:
-	std::string type;
 	Brain		*brain;
 
 public:

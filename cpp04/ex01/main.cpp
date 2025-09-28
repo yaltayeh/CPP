@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 15:08:04 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/25 15:08:07 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/27 16:20:15 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,15 @@ void TestNormal()
 void TestWrong()
 {
 	const WrongAnimal *meta = new WrongAnimal();
-	WrongCat *cat = new WrongCat();
+	WrongAnimal *anim1 = new WrongCat();
 
-	std::cout << "type: " << cat->getType() << " " << std::endl;
+	std::cout << "type: " << anim1->getType() << " " << std::endl;
 
-	cat->makeSound();
+	anim1->makeSound();
 	meta->makeSound();
-	
-	// Test ideas
-	std::cout << "----- Wrong Cat Ideas -----" << std::endl;
-	cat->addIdea("I doesn't love my owner");
-	std::cout << "Wrong Cat idea: " << cat->getIdea(0) << std::endl;
-	cat->makeSound();
 
 	delete meta;
-	delete cat;
+	delete anim1;
 }
 
 int main()

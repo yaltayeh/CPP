@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:43:15 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/22 16:05:51 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/09/28 11:33:03 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 
 class WrongCat : public WrongAnimal
 {
-private:
-	std::string type;
-
 public:
 	WrongCat();
 	WrongCat(const WrongCat &other);

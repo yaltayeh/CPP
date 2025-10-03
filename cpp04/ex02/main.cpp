@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 15:08:04 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/28 11:36:07 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:40:18 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "WrongCat.hpp"
 #include <iostream>
 
-void TestNormal()
+void testNormal()
 {
 	Animal *animal1 = new Dog();
 	Animal *animal2 = new Cat();
@@ -40,7 +40,7 @@ void TestNormal()
 	delete animal2;
 }
 
-void TestWrong()
+void testWrong()
 {
 	const WrongAnimal *meta = new WrongAnimal();
 	WrongAnimal *anim1 = new WrongCat();
@@ -57,10 +57,10 @@ void TestWrong()
 int main()
 {
 	std::cout << "----- Testing Normal Animals -----" << std::endl;
-	TestNormal();
+	testNormal();
 	std::cout << "----------------------------------" << std::endl;
 	std::cout << "----- Testing Wrong Animals -----" << std::endl;
-	TestWrong();
+	testWrong();
 	std::cout << "----------------------------------" << std::endl;
 	return 0;
 }

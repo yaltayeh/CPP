@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/25 15:05:25 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:46:00 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ Dog::Dog() : Animal("Dog")
 Dog::Dog(const Dog &other)
 {
 	std::cout << "Dog wakeup(copy)." << std::endl;
-	*this = other;
 	brain = new Brain(*other.brain);
+	*this = other;
 }
 
 Dog &Dog::operator=(const Dog &other)

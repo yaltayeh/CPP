@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 14:45:18 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/09/25 14:57:44 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:47:53 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ Cat::Cat() : Animal("Cat")
 Cat::Cat(const Cat &other)
 {
 	std::cout << "Cat wakeup(copy)." << std::endl;
-	*this = other;
 	brain = new Brain(*other.brain);
+	*this = other;
 }
 
 Cat &Cat::operator=(const Cat &other)

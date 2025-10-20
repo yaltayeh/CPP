@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 21:45:03 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/14 08:34:11 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:53:13 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,16 @@ public:
 	};
 };
 
-# define TRHOW_GRADETOOHIGH(name, grade) throw (Bureaucrat::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
-# define TRHOW_GRADETOOLOW(name, grade) throw (Bureaucrat::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))
+Bureaucrat
+# define __TRHOW_BUREAUCRAT_GRADETOOHIGH(name, grade) throw (Bureaucrat::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
+# define __TRHOW_BUREAUCRAT_GRADETOOLOW(name, grade) throw (Bureaucrat::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))
 
-# define CHECK_GRADE(name, grade) 				\
+# define BUREAUCRAT_CHECK_GRADE(name, grade) 				\
 	{											\
 		if (grade < 1)							\
-			TRHOW_GRADETOOHIGH(name, grade);	\
+			__TRHOW_BUREAUCRAT_GRADETOOHIGH(name, grade);	\
 		if (grade > 150)						\
-			TRHOW_GRADETOOLOW(name, grade);		\
+			__TRHOW_BUREAUCRAT_GRADETOOLOW(name, grade);		\
 	}											\
 
 #endif /* BUREAUCRAT_HPP */

@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 06:42:23 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/14 08:40:20 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:56:38 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(150)
 {
-	CHECK_GRADE(name, grade);
+	BUREAUCRAT_CHECK_GRADE(name, grade);
 	std::cout << GREEN << "✓ New bureaucrat '" << name << "' hired with grade " << grade << RESET << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &bur) : name(bur.name), grade(bur.grade)
 {
-	CHECK_GRADE(name, grade);
+	BUREAUCRAT_CHECK_GRADE(name, grade);
 	std::cout << GREEN << "✓ New bureaucrat '" << name << "' hired with grade " << grade << RESET << std::endl;
 }
 
@@ -30,7 +30,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade)
 	: name(name),
 	  grade(grade)
 {
-	CHECK_GRADE(name, grade);
+	BUREAUCRAT_CHECK_GRADE(name, grade);
 	std::cout << GREEN << "✓ New bureaucrat '" << name << "' hired with grade " << grade << RESET << std::endl;
 }
 
@@ -40,7 +40,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat& other)
 	{
 		this->name = other.name;
 		this->grade = other.grade;
-		CHECK_GRADE(this->name, this->grade);
+		BUREAUCRAT_CHECK_GRADE(this->name, this->grade);
 	}
 	return (*this);
 }
@@ -65,7 +65,7 @@ void Bureaucrat::promotion()
 	int	new_grade;
 
 	new_grade = grade - 1;
-	CHECK_GRADE(name, new_grade);
+	BUREAUCRAT_CHECK_GRADE(name, new_grade);
 	grade = new_grade;
 	std::cout << CYAN << "↑ '" << name << "' has been promoted to grade " << grade << RESET << std::endl;
 }
@@ -75,7 +75,7 @@ void Bureaucrat::demoted()
 	int	new_grade;
 
 	new_grade = grade + 1;
-	CHECK_GRADE(name, new_grade);
+	BUREAUCRAT_CHECK_GRADE(name, new_grade);
 	grade = new_grade;
 	std::cout << MAGENTA << "↓ '" << name << "' has been demoted to grade " << grade << RESET << std::endl;
 }

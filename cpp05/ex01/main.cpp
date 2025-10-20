@@ -6,11 +6,12 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 07:53:25 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/14 08:40:20 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:00:17 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -19,8 +20,7 @@
 void	printHelp()
 {
 	std::cout << "\n" << BOLD << CYAN << "========== BUREAUCRAT MANAGEMENT SYSTEM ==========" << RESET << std::endl;
-	std::cout << BOLD << "Available commands:" << RESET << std::endl;
-	std::cout << "  " << GREEN << "help" << RESET << "                          - Display this help message" << std::endl;
+	std::cout << BOLD << "Bureaucrat Commands:" << RESET << std::endl;
 	std::cout << "  " << GREEN << "employment" << RESET << " <name> <grade>     - Create new employee" << std::endl;
 	std::cout << "  " << GREEN << "emp" << RESET << " <name> <grade>            - Shorthand for employment" << std::endl;
 	std::cout << "  " << GREEN << "list" << RESET << "                          - Display all employees" << std::endl;
@@ -28,6 +28,13 @@ void	printHelp()
 	std::cout << "  " << GREEN << "demote" << RESET << " <id>                   - Demote employee by ID" << std::endl;
 	std::cout << "  " << GREEN << "dismissal" << RESET << " <id>                - Fire employee by ID" << std::endl;
 	std::cout << "  " << GREEN << "dis" << RESET << " <id>                      - Shorthand for dismissal" << std::endl;
+	std::cout << "\n" << BOLD << "Form Commands:" << RESET << std::endl;
+	std::cout << "  " << GREEN << "form" << RESET << " <name> <signGrade> <execGrade> - Create new form" << std::endl;
+	std::cout << "  " << GREEN << "forms" << RESET << "                        - List all forms" << std::endl;
+	std::cout << "  " << GREEN << "sign" << RESET << " <empID> <formID>        - Sign form with employee" << std::endl;
+	std::cout << "  " << GREEN << "destroy" << RESET << " <formID>             - Destroy a form" << std::endl;
+	std::cout << "\n" << BOLD << "General:" << RESET << std::endl;
+	std::cout << "  " << GREEN << "help" << RESET << "                          - Display this help message" << std::endl;
 	std::cout << "  " << GREEN << "exit" << RESET << " (or " << GREEN << "quit" << RESET << ", " << GREEN << "q" << RESET << ", " << GREEN << "Ctrl-D" << RESET << ") - Exit the program" << std::endl;
 	std::cout << BOLD << CYAN << "===================================================" << RESET << std::endl;
 }
@@ -129,13 +136,107 @@ void	dismissEmployee(std::vector<Bureaucrat*>& employees, size_t id)
 	std::cout << GREEN << "✓ Employee dismissed successfully!" << RESET << std::endl;
 }
 
+void	listForms(const std::vector<Form*>& forms)
+{
+	if (forms.empty())
+	{
+		std::cout << YELLOW << "No forms in the system." << RESET << std::endl;
+		return;
+	}
+	
+	std::cout << "\n" << BOLD << MAGENTA << "========== FORM LIST ==========" << RESET << std::endl;
+	for (size_t i = 0; i < forms.size(); i++)
+	{
+		std::cout << CYAN << "[" << i << "]" << RESET << " Form: " << forms[i]->getName() 
+				  << " | Signed: " << (forms[i]->getIsSigned() ? GREEN "Yes" RESET : RED "No" RESET)
+				  << " | Sign Grade: " << forms[i]->getGradeToSign()
+				  << " | Exec Grade: " << forms[i]->getGradeToExecute() << std::endl;
+	}
+	std::cout << BOLD << MAGENTA << "===============================" << RESET << std::endl;
+}
+
+void	createForm(std::vector<Form*>& forms, const std::string& name, int signGrade, int execGrade)
+{
+	try
+	{
+		Form* newForm = new Form(name, signGrade, execGrade);
+		forms.push_back(newForm);
+		std::cout << GREEN << "✓ Form '" << name << "' created successfully!" << RESET << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << RED << "✗ Error: " << e.what() << RESET << std::endl;
+	}
+}
+
+void	signForm(std::vector<Bureaucrat*>& employees, std::vector<Form*>& forms, size_t empID, size_t formID)
+{
+	if (employees.empty())
+	{
+		std::cout << YELLOW << "No employees in the system." << RESET << std::endl;
+		return;
+	}
+
+	if (forms.empty())
+	{
+		std::cout << YELLOW << "No forms in the system." << RESET << std::endl;
+		return;
+	}
+
+	if (empID >= employees.size())
+	{
+		std::cout << RED << "✗ Error: Invalid employee ID." << RESET << std::endl;
+		return;
+	}
+
+	if (formID >= forms.size())
+	{
+		std::cout << RED << "✗ Error: Invalid form ID." << RESET << std::endl;
+		return;
+	}
+
+	try
+	{
+		if (employees[empID]->signForm(*forms[formID]))
+		{
+			std::cout << GREEN << "✓ Form '" << forms[formID]->getName() 
+					  << "' signed by " << employees[empID]->getName() << RESET << std::endl;
+		}
+	}
+	catch (std::exception& e)
+	{
+		std::cout << RED << "✗ Error: " << e.what() << RESET << std::endl;
+	}
+}
+
+void	destroyForm(std::vector<Form*>& forms, size_t id)
+{
+	if (forms.empty())
+	{
+		std::cout << YELLOW << "No forms to destroy." << RESET << std::endl;
+		return;
+	}
+
+	if (id >= forms.size())
+	{
+		std::cout << RED << "✗ Error: Invalid form ID." << RESET << std::endl;
+		return;
+	}
+
+	std::string formName = forms[id]->getName();
+	delete forms[id];
+	forms.erase(forms.begin() + id);
+	std::cout << GREEN << "✓ Form '" << formName << "' destroyed successfully!" << RESET << std::endl;
+}
+
 int main()
 {
 	std::vector<Bureaucrat*> employees;
+	std::vector<Form*> forms;
 	std::string line;
 	std::string command;
 
-	std::cout << BOLD << BLUE << "Welcome to the Bureaucrat Management System!" << RESET << std::endl;
+	std::cout << BOLD << BLUE << "Welcome to the Bureaucrat & Form Management System!" << RESET << std::endl;
 	std::cout << "Type '" << GREEN << "help" << RESET << "' for available commands." << std::endl;
 
 	while (true)
@@ -151,6 +252,9 @@ int main()
 				for (size_t i = 0; i < employees.size(); i++)
 					delete employees[i];
 				employees.clear();
+				for (size_t i = 0; i < forms.size(); i++)
+					delete forms[i];
+				forms.clear();
 				std::cout << BOLD << GREEN << "Goodbye!" << RESET << std::endl;
 				return 0;
 			}
@@ -225,12 +329,56 @@ int main()
 			
 			dismissEmployee(employees, id);
 		}
+		else if (command == "form")
+		{
+			std::string name;
+			int signGrade, execGrade;
+			
+			if (!(iss >> name >> signGrade >> execGrade))
+			{
+				std::cout << RED << "✗ Error: Usage: form <name> <signGrade> <execGrade>" << RESET << std::endl;
+				continue;
+			}
+			
+			createForm(forms, name, signGrade, execGrade);
+		}
+		else if (command == "forms")
+		{
+			listForms(forms);
+		}
+		else if (command == "sign")
+		{
+			size_t empID, formID;
+			
+			if (!(iss >> empID >> formID))
+			{
+				std::cout << RED << "✗ Error: Usage: sign <employeeID> <formID>" << RESET << std::endl;
+				continue;
+			}
+			
+			signForm(employees, forms, empID, formID);
+		}
+		else if (command == "destroy")
+		{
+			size_t id;
+			
+			if (!(iss >> id))
+			{
+				std::cout << RED << "✗ Error: Usage: destroy <formID>" << RESET << std::endl;
+				continue;
+			}
+			
+			destroyForm(forms, id);
+		}
 		else if (command == "exit" || command == "quit" || command == "q")
 		{
 			std::cout << YELLOW << "Cleaning up and exiting..." << RESET << std::endl;
 			for (size_t i = 0; i < employees.size(); i++)
 				delete employees[i];
 			employees.clear();
+			for (size_t i = 0; i < forms.size(); i++)
+				delete forms[i];
+			forms.clear();
 			std::cout << BOLD << GREEN << "Goodbye!" << RESET << std::endl;
 			return 0;
 		}
@@ -247,6 +395,8 @@ int main()
 	// Cleanup in case of abnormal exit
 	for (size_t i = 0; i < employees.size(); i++)
 		delete employees[i];
+	for (size_t i = 0; i < forms.size(); i++)
+		delete forms[i];
 
 	return 0;
 }

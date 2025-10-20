@@ -6,11 +6,12 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 06:42:23 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/20 08:55:21 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 12:52:55 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <sstream>
 #include <iostream>
 
@@ -81,7 +82,7 @@ void Bureaucrat::demoted()
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur)
 {
-	os << bur.name << ", bureaucrat grade " << bur.grade;
+	os << bur.getName() << ", bureaucrat grade " << bur.getGrade() << std::endl;
 	return (os);
 }
 
@@ -141,4 +142,17 @@ Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return (message.c_str());
+}
+
+bool Bureaucrat::signForm(Form &form) const
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << name << " signed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
 }

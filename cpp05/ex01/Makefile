@@ -1,14 +1,18 @@
 NAME = Bureau
 
 FILES = main.cpp		\
-		Bureaucrat.cpp
+		Bureaucrat.cpp	\
+		Form.cpp
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98
 
 OFILES = ${FILES:%.cpp=%.o}
+DFILES = ${OFILES:%.o=%.d}
 
 all: $(NAME)
+
+-include $(DFILES)
 
 $(NAME): $(OFILES)
 	$(CC) $^ -o $@

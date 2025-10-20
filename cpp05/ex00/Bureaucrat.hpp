@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 21:45:03 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/20 08:46:53 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 12:25:14 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ public:
 	void promotion();
 	void demoted();
 
-	friend std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur);
-
 	class GradeTooHighException : public std::exception
 	{
 	private:
@@ -71,6 +69,8 @@ public:
 		const char *what() const throw();
 	};
 };
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur);
 
 #define __TRHOW_BUREAUCRAT_GRADETOOHIGH(name, grade) throw(Bureaucrat::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
 #define __TRHOW_BUREAUCRAT_GRADETOOLOW(name, grade) throw(Bureaucrat::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))

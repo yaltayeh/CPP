@@ -6,12 +6,11 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 21:45:03 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/15 17:53:13 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 08:28:45 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#pragma once
 
 # include <string>
 # include <exception>
@@ -83,5 +82,3 @@ Bureaucrat
 		if (grade > 150)						\
 			__TRHOW_BUREAUCRAT_GRADETOOLOW(name, grade);		\
 	}											\
-
-#endif /* BUREAUCRAT_HPP */

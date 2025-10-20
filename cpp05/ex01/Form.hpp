@@ -6,12 +6,11 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:42:44 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/15 17:48:55 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 08:28:55 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#pragma once
 
 #include <string>
 
@@ -53,5 +52,3 @@ public:
 		const char* what() const throw();
 	};
 };
-
-#endif

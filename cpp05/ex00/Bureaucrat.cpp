@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 06:42:23 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/15 17:56:38 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 08:55:21 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,24 @@ Bureaucrat::Bureaucrat() : name("Default"), grade(150)
 	std::cout << GREEN << "✓ New bureaucrat '" << name << "' hired with grade " << grade << RESET << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &bur) : name(bur.name), grade(bur.grade)
+Bureaucrat::Bureaucrat(const Bureaucrat &bur) : name(bur.name),
+												grade(bur.grade)
 {
 	BUREAUCRAT_CHECK_GRADE(name, grade);
 	std::cout << GREEN << "✓ New bureaucrat '" << name << "' hired with grade " << grade << RESET << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, int grade)
-	: name(name),
-	  grade(grade)
+Bureaucrat::Bureaucrat(const std::string name, int grade) : name(name),
+															grade(grade)
 {
 	BUREAUCRAT_CHECK_GRADE(name, grade);
 	std::cout << GREEN << "✓ New bureaucrat '" << name << "' hired with grade " << grade << RESET << std::endl;
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat& other)
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
 	if (this != &other)
 	{
-		this->name = other.name;
 		this->grade = other.grade;
 		BUREAUCRAT_CHECK_GRADE(this->name, this->grade);
 	}
@@ -62,7 +61,7 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::promotion()
 {
-	int	new_grade;
+	int new_grade;
 
 	new_grade = grade - 1;
 	BUREAUCRAT_CHECK_GRADE(name, new_grade);
@@ -72,7 +71,7 @@ void Bureaucrat::promotion()
 
 void Bureaucrat::demoted()
 {
-	int	new_grade;
+	int new_grade;
 
 	new_grade = grade + 1;
 	BUREAUCRAT_CHECK_GRADE(name, new_grade);
@@ -88,9 +87,7 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur)
 
 
 
-
-
-
+/* GradeTooHighException */
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string msg, const std::string name, int grade)
 {
@@ -112,10 +109,14 @@ Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
 {
 }
 
-const char *Bureaucrat::GradeTooHighException::what() const throw() 
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return (message.c_str());
 }
+
+
+
+/* GradeTooLowException */
 
 Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string msg, const std::string name, int grade)
 {
@@ -137,7 +138,7 @@ Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 {
 }
 
-const char *Bureaucrat::GradeTooLowException::what() const throw() 
+const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return (message.c_str());
 }

@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:33:04 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/20 13:00:22 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:17:51 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ int Form::getGradeToExecute() const
 	return (gradeToExecute);
 }
 
-void Form::beSigned(const Bureaucrat &bur)
+void Form::beSigned(Bureaucrat const &bur)
 {
 	if (isSigned)
 		throw (std::runtime_error("form " + name + " is already signed"));
 	if (bur.getGrade() > gradeToSign)
-		__TRHOW_FORM_GRADETOOLOW(name, bur.getGrade());
+		__THROW_FORM_GRADETOOLOW(name, bur.getGrade());
 	isSigned = true;
 }
 

@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 21:45:03 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/20 13:00:39 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:19:00 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ public:
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bur);
 
-#define __TRHOW_BUREAUCRAT_GRADETOOHIGH(name, grade) throw(Bureaucrat::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
-#define __TRHOW_BUREAUCRAT_GRADETOOLOW(name, grade) throw(Bureaucrat::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))
+#define __THROW_BUREAUCRAT_GRADETOOHIGH(name, grade) throw(Bureaucrat::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
+#define __THROW_BUREAUCRAT_GRADETOOLOW(name, grade) throw(Bureaucrat::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))
 
 #define BUREAUCRAT_CHECK_GRADE(name, grade)               \
 	{                                                     \
 		if (grade < 1)                                    \
-			__TRHOW_BUREAUCRAT_GRADETOOHIGH(name, grade); \
+			__THROW_BUREAUCRAT_GRADETOOHIGH(name, grade); \
 		if (grade > 150)                                  \
-			__TRHOW_BUREAUCRAT_GRADETOOLOW(name, grade);  \
+			__THROW_BUREAUCRAT_GRADETOOLOW(name, grade);  \
 	}\

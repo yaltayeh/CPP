@@ -6,7 +6,7 @@
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:42:44 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/20 12:33:50 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:17:51 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ public:
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
 
-	void beSigned(const Bureaucrat &bur);
+	void beSigned(Bureaucrat const &bur);
 
 	class GradeTooHighException : public std::exception
 	{
@@ -63,13 +63,13 @@ public:
 
 std::ostream &operator<<(std::ostream &os, const Form &form);
 
-#define __TRHOW_FORM_GRADETOOHIGH(name, grade) throw(Form::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
-#define __TRHOW_FORM_GRADETOOLOW(name, grade) throw(Form::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))
+#define __THROW_FORM_GRADETOOHIGH(name, grade) throw(Form::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
+#define __THROW_FORM_GRADETOOLOW(name, grade) throw(Form::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))
 
 #define FORM_CHECK_GRADE(name, grade)               \
 	{                                               \
 		if (grade < 1)                              \
-			__TRHOW_FORM_GRADETOOHIGH(name, grade); \
+			__THROW_FORM_GRADETOOHIGH(name, grade); \
 		if (grade > 150)                            \
-			__TRHOW_FORM_GRADETOOLOW(name, grade);  \
+			__THROW_FORM_GRADETOOLOW(name, grade);  \
 	}\

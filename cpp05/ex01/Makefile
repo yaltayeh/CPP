@@ -21,7 +21,7 @@ $(NAME): $(OFILES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OFILES)
+	rm -rf $(OFILES) $(DFILES)
 
 fclean: clean
 	rm -rf $(NAME)

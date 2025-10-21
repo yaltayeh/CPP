@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaltayeh <yaltayeh@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:42:44 by yaltayeh          #+#    #+#             */
-/*   Updated: 2025/10/20 18:24:43 by yaltayeh         ###   ########.fr       */
+/*   Updated: 2025/10/20 18:24:50 by yaltayeh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string>
 #include "Bureaucrat.hpp"
 
-class Form
+class AForm
 {
 private:
 	const std::string name;
@@ -24,10 +24,10 @@ private:
 	int gradeToExecute;
 
 public:
-	Form();
-	Form(std::string name, int gradeToSign, int gradeToExecute);
-	~Form();
-	Form &operator=(const Form &form);
+	AForm();
+	AForm(std::string name, int gradeToSign, int gradeToExecute);
+	virtual ~AForm() = 0;
+	virtual AForm &operator=(const AForm &form);
 
 	const std::string &getName() const;
 	bool getIsSigned() const;
@@ -35,6 +35,7 @@ public:
 	int getGradeToExecute() const;
 
 	void beSigned(Bureaucrat const &bur);
+	virtual void execute(Bureaucrat const &executor) = 0;
 
 	class GradeTooHighException : public std::exception
 	{
@@ -61,15 +62,15 @@ public:
 	};
 };
 
-std::ostream &operator<<(std::ostream &os, const Form &form);
+std::ostream &operator<<(std::ostream &os, const AForm &form);
 
-#define __THROW_FORM_GRADETOOHIGH(name, grade) throw(Form::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
-#define __THROW_FORM_GRADETOOLOW(name, grade) throw(Form::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))
+#define __THROW_AFORM_GRADETOOHIGH(name, grade) throw(AForm::GradeTooHighException(__func__, name, grade, __FILE__, __LINE__))
+#define __THROW_AFORM_GRADETOOLOW(name, grade) throw(AForm::GradeTooLowException(__func__, name, grade, __FILE__, __LINE__))
 
 #define FORM_CHECK_GRADE(name, grade)               \
 	{                                               \
 		if (grade < 1)                              \
 			__THROW_AFORM_GRADETOOHIGH(name, grade); \
 		if (grade > 150)                            \
-			__THROW_FORM_GRADETOOLOW(name, grade);  \
+			__THROW_AFORM_GRADETOOLOW(name, grade);  \
 	}\

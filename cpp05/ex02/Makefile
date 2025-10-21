@@ -1,8 +1,9 @@
 NAME = Bureau
 
-FILES = main.cpp		\
-		Bureaucrat.cpp	\
-		AForm.cpp
+FILES = main.cpp					\
+		Bureaucrat.cpp				\
+		AForm.cpp					\
+		PresidentialPardonForm.cpp	\
 
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -MMD -std=c++98

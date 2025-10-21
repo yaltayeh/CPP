@@ -15,23 +15,30 @@
 #include <iostream>
 
 AForm::AForm() : name("default"),
-			   isSigned(false),
-			   gradeToSign(150),
-			   gradeToExecute(150)
+				 isSigned(false),
+				 gradeToSign(150),
+				 gradeToExecute(150)
 {
 	FORM_CHECK_GRADE(name, gradeToSign);
 	FORM_CHECK_GRADE(name, gradeToExecute);
 }
 
 AForm::AForm(std::string name,
-		   int gradeToSign,
-		   int gradeToExecute) : name(name),
-								 isSigned(false),
-								 gradeToSign(gradeToSign),
-								 gradeToExecute(gradeToExecute)
+			 int gradeToSign,
+			 int gradeToExecute) : name(name),
+								   isSigned(false),
+								   gradeToSign(gradeToSign),
+								   gradeToExecute(gradeToExecute)
 {
 	FORM_CHECK_GRADE(name, gradeToSign);
 	FORM_CHECK_GRADE(name, gradeToExecute);
+}
+
+AForm::AForm(const AForm &form) : name(form.name),
+								 isSigned(form.isSigned),
+								 gradeToSign(form.gradeToSign),
+								 gradeToExecute(form.gradeToExecute)
+{
 }
 
 AForm::~AForm()
@@ -72,7 +79,7 @@ int AForm::getGradeToExecute() const
 void AForm::beSigned(Bureaucrat const &bur)
 {
 	if (isSigned)
-		throw (std::runtime_error("form " + name + " is already signed"));
+		throw(std::runtime_error("form " + name + " is already signed"));
 	if (bur.getGrade() > gradeToSign)
 		__THROW_AFORM_GRADETOOLOW(name, bur.getGrade());
 	isSigned = true;
@@ -93,8 +100,6 @@ std::ostream &operator<<(std::ostream &os, const AForm &form)
 			  << std::endl;
 	return (os);
 }
-
-
 
 AForm::GradeTooHighException::GradeTooHighException(const std::string msg, const std::string name, int grade)
 {
@@ -120,8 +125,6 @@ const char *AForm::GradeTooHighException::what() const throw()
 {
 	return (message.c_str());
 }
-
-
 
 AForm::GradeTooLowException::GradeTooLowException(const std::string msg, const std::string name, int grade)
 {
